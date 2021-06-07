@@ -1,0 +1,58 @@
+version: '3'
+services:
+
+# Configure prometheus container
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    user: root
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./data:/prometheus
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - '9090:9090'
+    command: --config.file=/etc/prometheus/prometheus.yml
+
+# Configure grafana container
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    user: root
+    restart: unless-stopped
+    network_mode: bridge
+    volumes: 
+      - ./grafana:/var/lib/grafana
+    ports: 
+      - '3000:3000'
+    depends_on: 
+      - prometheus
+
+# Configure node_exporter
+#  node_exporter:
+#    container_name: node_exporter
+#    image: quay.io/prometheus/node-exporter:latest
+#    volumes:
+#      - './node_exporter:/host:ro,rslave'
+#    network_mode: host
+#    ports:
+#      - '9100:9100'
+#    pid: host
+#    restart: unless-stopped
+#    command: 
+#      - '--path.rootfs=/host'
+
+# Configure snmp_exporter
+  snmp_exporter:
+    container_name: snmp_exporter
+    image: prom/snmp-exporter:latest
+    volumes:
+      - ./snmp_exporter/snmp.yml:/etc/snmp_exporter/snmp.yml
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - '9116:9116'
+    depends_on: 
+      - prometheus
+    command: --config.file=/etc/snmp_exporter/snmp.yml
