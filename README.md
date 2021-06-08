@@ -15,6 +15,6 @@ We you are on the snmp_exporter just put the IP of the server/machine where the 
 specify the module (e.g: synology if you want to monitor a synology NAS).
 
 ## link
-https://prometheus.io/docs/prometheus/latest/configuration/configuration/
-https://github.com/prometheus/snmp_exporter 
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/  
+https://github.com/prometheus/snmp_exporter  
 https://grafana.com/docs/grafana/latest/installation/docker/
