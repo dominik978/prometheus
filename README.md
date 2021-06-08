@@ -12,7 +12,9 @@ Prometheus will be accessible through http://localhost:9090, grafana through htt
 and the snmp_exporter through http://localhost:9116.
 
 We you are on the snmp_exporter just put the IP of the server/machine where the snmp deamon runs then
-specify the module (e.g: synology if you want to monitor a synology NAS).
+specify the module (e.g: synology if you want to monitor a synology NAS). The snmp.yml has been generated
+with the generator tool provide by Prometheus to only have the OID i wanted. A generic file is
+provided on their git (see below).  
 
 ## link
 https://prometheus.io/docs/prometheus/latest/configuration/configuration/  
