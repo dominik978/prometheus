@@ -10,10 +10,10 @@ scrape_configs:
       - targets: ['localhost:9090']
   - job_name: node_exporter
     static_configs:
-      - targets: ['192.168.1.16:9100'] 
+      - targets: ['SEVER_IP:9100'] 
   - job_name: snmp_exporter
     static_configs:
-      - targets: ['192.168.1.2']
+      - targets: ['SNMP_SERVER_IP']
     metrics_path: /snmp
     params:
       module: [synology]
